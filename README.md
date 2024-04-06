@@ -1,5 +1,5 @@
 # TOP Calculator - Readme
-This project is my solution for [Project: Landing Page](https://www.theodinproject.com/lessons/foundations-landing-page) on [Foundations Course](https://www.theodinproject.com/paths/foundations/courses/foundations) from [The Odin Project (TOP)](https://www.theodinproject.com) which is an open-source curriculum for learning full-stack web development.
+This project is my solution for [Project: Calculator](https://www.theodinproject.com/lessons/foundations-calculator) on [Foundations Course](https://www.theodinproject.com/paths/foundations/courses/foundations) from [The Odin Project (TOP)](https://www.theodinproject.com) which is an open-source curriculum for learning full-stack web development.
 
 See the [live demo](https://pasek108.github.io/TOP-Calculator/).
 
