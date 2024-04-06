@@ -1,18 +1,11 @@
 # TOP Calculator - Readme
 This project is my solution for [Project: Landing Page](https://www.theodinproject.com/lessons/foundations-landing-page) on [Foundations Course](https://www.theodinproject.com/paths/foundations/courses/foundations) from [The Odin Project (TOP)](https://www.theodinproject.com) which is an open-source curriculum for learning full-stack web development.
 
-<br>
+See the [live demo](https://pasek108.github.io/TOP-Calculator/).
 
-## Requirements of the project
-- Evaluate only single pair of numbers at a time
-- Display current input and result
-- Basic math operations (add, sub, mul, div)
-- Error when divide by 0
-- Clear and backspace button
-- Correct floating point numbers
-- Keyboard support
+![preview](/_for_readme/main_page.png)
 
-<hr>
+----------------------------------
 
 ## Technologies
 Languages:
@@ -27,12 +20,30 @@ Libraries:
 Programs:
 - [VSCode](https://code.visualstudio.com)
 
-<hr>
+----------------------------------
 
-## Implementation
-See the [live demo](https://pasek108.github.io/TOP-Calculator/).
+## Requirements of the project
+- Evaluate only single pair of numbers at a time
+- Display current input and result
+- Basic math operations (add, sub, mul, div)
+- Error when divide by 0
+- Clear and backspace button
+- Correct floating point numbers
+- Round too long numbers
+- Keyboard support
 
-![preview](/_for_readme/main_page.png)
+----------------------------------
 
+### Features
+- All of the projext requirements
+- Previous operation text
+- Negative numbers
+- Pressed key hilight
 
+<br>
 
+> [!NOTE]  
+> Room for improvements:
+> - More operations
+> - Control of rounding
+> - Input and evaluation of full math expressions
