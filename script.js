@@ -1,7 +1,8 @@
-"use strict";
+"use strict"
 
 /* ----------------------- variables ----------------------- */
-const display = document.querySelector(".display-text")
+const previous_value = document.querySelector(".previous-value")
+const current_value = document.querySelector(".current-value")
 document.addEventListener("keydown", keyboardInput)
 
 const backspace = document.querySelector(".backspace")
@@ -11,13 +12,13 @@ const clear = document.querySelector(".clear")
 clear.addEventListener("click", clearInput)
 
 const numbers = document.querySelectorAll(".number")
-numbers.forEach(num => num.addEventListener("click", inputNumber))
+numbers.forEach((num) => num.addEventListener("click", inputNumber))
 
 const dot = document.querySelector(".dot")
 dot.addEventListener("click", inputDot)
 
 const operations = document.querySelectorAll(".operation")
-operations.forEach(op => op.addEventListener("click", inputOperation))
+operations.forEach((op) => op.addEventListener("click", inputOperation))
 
 const equals = document.querySelector(".equals")
 equals.addEventListener("click", calcResult)
@@ -28,112 +29,119 @@ let number = ""
 
 /* ----------------------- functions ----------------------- */
 function operate(op, a, b) {
-    switch (op) {
-        case "+": return +a + +b
-        case "-": return +a - +b
-        case "*": return +a * +b
-        case "/": return +a / +b
+  // prettier-ignore
+  switch (op) {
+        case "+": return roundNumber(+a + +b)
+        case "-": return roundNumber(+a - +b)
+        case "*": return roundNumber(+a * +b)
+        case "/": return roundNumber(+a / +b)
     }
 }
 
 function clearInput(evt) {
-    const target = evt.currentTarget
-    flickKey(target)
+  const target = evt.currentTarget
+  flickKey(target)
 
-    operator = ""
-    result = ""
-    number = ""
+  operator = ""
+  result = ""
+  number = ""
 
-    display.textContent = number
+  current_value.textContent = ""
+  previous_value.textContent = ""
 }
 
 function clearLast(evt) {
-    const target = evt.currentTarget
-    flickKey(target)
+  const target = evt.currentTarget
+  flickKey(target)
 
-    number = number.slice(0, -1)
+  number = number.slice(0, -1)
 
-    display.textContent = number
+  current_value.textContent = number
 }
 
 function inputNumber(evt) {
-    const target = evt.currentTarget
-    flickKey(target)
+  const target = evt.currentTarget
+  flickKey(target)
 
-    number += target.dataset.value
-    display.textContent = number
+  number += target.dataset.value
+  current_value.textContent = number
 }
 
 function inputDot(evt) {
-    const target = evt.currentTarget
-    flickKey(target)
+  const target = evt.currentTarget
+  flickKey(target)
 
-    if (number.length < 1 || number.includes(".")) return
-    if (number.length == 1 && number[0] === "-") return
+  if (number.length < 1 || number.includes(".")) return
+  if (number.length == 1 && number[0] === "-") return
 
-    number += "."
-    display.textContent = number
+  number += "."
+  current_value.textContent = number
 }
 
 function inputOperation(evt) {
-    const target = evt.currentTarget
-    flickKey(target)
+  const target = evt.currentTarget
+  flickKey(target)
 
-    const operation = target.dataset.value
+  const operation = target.dataset.value
 
-    if (number == "-") return
+  if (number == "-") return
 
-    if (number.length < 1) {
-        if (operation != "-") return
+  if (number.length < 1) {
+    if (operation != "-") return
 
-        number += "-"
-        display.textContent = number
-        return
-    }
+    number += "-"
+    current_value.textContent = number
+    return
+  }
 
-    if (operator == "") {
-        operator = operation
-        result = number
-        number = ""
-        display.textContent = result
-        return
-    }
+  if (number.slice(-1) == ".") number = number.slice(0, -1)
 
-    if (number.slice(-1) == ".") number = number.slice(0, -1)
-
-    result = `${operate(operator, result, number)}`
+  if (operator == "") {
     operator = operation
+    result = number
     number = ""
+    current_value.textContent = result
+    previous_value.textContent = `${result}${operation}`
+    return
+  }
 
-    display.textContent = `${roundNumber(+result)}`
+  result = `${operate(operator, result, number)}`
+  operator = operation
+  number = ""
+
+  current_value.textContent = `${+result}`
+  previous_value.textContent = `${+result}${operation}`
 }
 
 function calcResult(evt) {
-    const target = evt.currentTarget
-    flickKey(target)
+  const target = evt.currentTarget
+  flickKey(target)
 
-    if (number == "-") number = "0"
-    if (number.slice(-1) == ".") number = number.slice(0, -1)
+  if (number == "-") number = "0"
+  if (number.slice(-1) == ".") number = number.slice(0, -1)
 
-    result = (operator === "") ? number : `${operate(operator, result, number)}`
+  if (operator == "") previous_value.textContent = `${+number}=`
+  else previous_value.textContent = `${+result}${operator}${+number}=`
 
+  result = operator === "" ? number : `${operate(operator, result, number)}`
 
-    if (Math.abs(result) === Infinity) {
-        display.textContent = "Err. Division by 0"
-        operator = ""
-        result = ""
-        number = ""
-    } else {
-        display.textContent = `${roundNumber(+result)}`
-        operator = ""
-        number = result
-    }
+  if (Math.abs(result) === Infinity) {
+    current_value.textContent = "Err. Division by 0"
+    operator = ""
+    result = ""
+    number = ""
+  } else {
+    current_value.textContent = `${+result}`
+    operator = ""
+    number = result
+  }
 }
 
 function keyboardInput(evt) {
-    evt.preventDefault()
+  evt.preventDefault()
 
-    switch (evt.key) {
+  // prettier-ignore
+  switch (evt.key) {
         case "0": numbers[9].click(); break
         case "1": numbers[6].click(); break
         case "2": numbers[7].click(); break
@@ -159,14 +167,14 @@ function keyboardInput(evt) {
 }
 
 function flickKey(target) {
-    target.style.backgroundColor = "#bcbcbc"
-    setTimeout(() => target.style.backgroundColor = null, 25)
+  target.style.backgroundColor = "#bcbcbc"
+  setTimeout(() => (target.style.backgroundColor = null), 25)
 }
 
 function isOperator(char) {
-    return "+-*/".includes(char)
+  return "+-*/".includes(char)
 }
 
 function roundNumber(num) {
-    return Math.round((num + Number.EPSILON) * 10 ** 6) / 10 ** 6
+  return Math.round((num + Number.EPSILON) * 10 ** 12) / 10 ** 12
 }

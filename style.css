@@ -43,6 +43,7 @@ body {
 }
 
 .display {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -59,11 +60,22 @@ body {
     overflow-x: scroll;
 }
 
-.display-text {
-    white-space: nowrap;
+.current-value {
     margin-left: auto;
+    margin-top: 1.25rem;
     font-size: 1.5rem;
     color: white;
+    white-space: nowrap;
+}
+
+.previous-value {
+    position: absolute;
+    top: -0.5rem;
+    right: 0;
+    padding: 1rem;
+    font-size: 1rem;
+    color: white;
+    white-space: nowrap;
 }
 
 .keys-row {
