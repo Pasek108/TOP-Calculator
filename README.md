@@ -34,7 +34,7 @@ Programs:
 
 ----------------------------------
 
-### Features
+## Features
 - **All of the project requirements**
 - Previous operation text
 - Negative numbers
