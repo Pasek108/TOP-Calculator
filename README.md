@@ -35,7 +35,7 @@ Programs:
 ----------------------------------
 
 ### Features
-- All of the projext requirements
+- **All of the project requirements**
 - Previous operation text
 - Negative numbers
 - Pressed key hilight
