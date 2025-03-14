@@ -1,4 +1,4 @@
-<h1 align="center">Calculator - Readme</h1>
+<h1 align="center">TOP-Calculator - Readme</h1>
 <p align="center">
   <strong>
     My solution for <a href="https://www.theodinproject.com/lessons/foundations-calculator" target="_blank">Project: Calculator</a> on  <a href="https://www.theodinproject.com/paths/foundations/courses/foundations" target="_blank">Foundations Course</a> from <a href="https://www.theodinproject.com" target="_blank">The Odin Project (TOP)</a>
